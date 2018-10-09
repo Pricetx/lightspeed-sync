@@ -6,11 +6,11 @@ public class Group {
     String cn;
     String dn;
     String schoolSisId;
-    ArrayList<String> member = new ArrayList<String>();
+    ArrayList<User> member = new ArrayList<User>();
     ArrayList<String> subGroup = new ArrayList<String>();
 
     public String getMember(int i) {
-        return member.get(i);
+        return member.get(i).toString();
     }
 
     public String getDn() {
@@ -21,35 +21,28 @@ public class Group {
         return cn;
     }
 
-    public static int getId() {
-        return id;
-    }
-
-    public Group(String cn, String dn){
-        this.cn = cn;
-        this.dn = dn;
-        if (cn.startsWith("G_ADG_L")){
-            this.schoolSisId = "leikskolar";
-        }
-        else{
-            this.schoolSisId = cn.substring(0, App.schoolChars);
-       }
-        schoolSisId = "TopLevel";
-        id++;
-    }
 
     public String getSchoolSisId() {
         return schoolSisId;
     }
 
-    public void addMember(String member) {
-        this.member.add(member);
-        memberCount++;
-    }
-
     public void setSubGroup(String subGroup){
         this.subGroup.add(subGroup);
     }
+
+
+
+
+    public Group(String cn, String dn){
+        this.cn = cn;
+        this.dn = dn;
+    }
+
+    public void addMember(User user) {
+        member.add(user);
+    }
+
+
 
     public String toString(){
         return cn;
